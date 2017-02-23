@@ -14,3 +14,18 @@ def parseFile(file):
                     if column < int(intel_list[1]) :
                         matrix[row - 1][column] = char
     return matrix, intel_list[2], intel_list[3]
+
+
+def Desepoire():
+    print('trop vieux pour cette merde !')
+    
+def FromContainerToString(val):
+    tmp = ""
+    for x in val:
+        val += x + ""
+    return tmp
+
+def WriteToFile(val):
+    f = open('test.txt', 'a+')
+    f.write(val)
+    f.close()
