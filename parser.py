@@ -115,6 +115,8 @@ for x in bigMatrix:
     rest.append(int(x[1]))
 print(rest)
 
+
+
 cachenb = 0
 def algo():
     global cachenb
@@ -135,17 +137,27 @@ def algo():
                     tmp.append(nbVideo)
                 #print("add video")
             else:
+                rt = int(sizeEachCache) - int(currentCacheSize)
+                print(rt)
+                for fr in rest:
+                    if (int(video_list_sizes[fr]) < rt):
+                        if (fr not in tmp):
+                            if (currentCacheSize + int(video_list_sizes[fr]) < int(sizeEachCache)):
+                                currentCacheSize += int(video_list_sizes[fr])
+                                print('adding ' + str(fr) + ' of size ' + video_list_sizes[fr] + 'for capacity' + str(rt))
+                                tmp.append(fr)
+                                print(tmp)
+                #####################
                 #print(tmp)
-                tmp = []
                 currentCacheSize = 0
                 matrix.append(tmp)
+                tmp = []
                 #print("add")
                 cachenb += 1
                 if (cachenb >= int(nbCaches)):
                     return matrix
         #print(matrix)
         return matrix
-
 
 
 var = algo()
