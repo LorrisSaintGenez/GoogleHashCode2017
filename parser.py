@@ -32,7 +32,15 @@ def parseFile(file):
 		for video in line.split(' '):
 		  video_list_sizes.append(video)
 	    if row > 1:
-		if endpos < nbEndPoints and flag == 0:	
+		try:
+			line.split(' ')[2]
+			requestMatrix.append(line.split()[0])
+			requestMatrix.append(line.split()[1])
+			requestMatrix.append(line.split()[2])
+			bigMatrix.append(requestMatrix)
+			requestMatrix = []
+
+		except:
 			if process == 0:
 				matrix.append(line.split(' ')[0] + ' ' + line.split(' ')[1])
 				val_parse = int(line.split(' ')[1])
@@ -47,22 +55,7 @@ def parseFile(file):
 					process = 0
 					master.append(detail)
 					detail = []
-		else:
-			requestMatrix.append(line.split()[0])
-			requestMatrix.append(line.split()[1])
-			requestMatrix.append(line.split()[2])
-			bigMatrix.append(requestMatrix)
-			requestMatrix = []
-
-			
-            '''else :
-                for column, char in enumerate(line):
-                    if column < int(intel_list[1]) :
-                        matrix[row - 1][column] = char
-
-    return matrix, intel_list[2], intel_list[3]
-'''	
-    return master
+	return video_list_sizes
 
 print(parseFile('trending_today.in'))
 
