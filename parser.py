@@ -97,7 +97,7 @@ def WriteToFile(header, val):
 
 # ==============================================================================#
 
-videos, plop = parseFile('me_at_the_zoo.in')
+videos, plop = parseFile('kittens.in')
 videos[len(videos) - 1] = (videos[len(videos) - 1])[:-1]
 '''
 bigMatrix = [] #requete video, endpoint, nbrequete
@@ -107,24 +107,26 @@ master = [] #cache / latence
 '''
 
 
+cachenb = 0
 def algo():
+    global cachenb
     currentCacheSize = 0
     tabLength = len(videos)
     matrix = []
-    cachenb = 0
+
     print(nbCaches)
     if nbCaches != 0:
-        print(int(nbVideos))
+        #print(int(nbVideos))
         tmp = []
         for nbVideo in range(int(nbVideos)):
             #print(nbVideo)
             if (currentCacheSize + int(video_list_sizes[nbVideo]) < int(sizeEachCache)):
-                print(str(currentCacheSize + int(video_list_sizes[nbVideo])) + "!////!" + str(int(sizeEachCache)))
+                #print(str(currentCacheSize + int(video_list_sizes[nbVideo])) + "!////!" + str(int(sizeEachCache)))
                 currentCacheSize += int(video_list_sizes[nbVideo])
                 tmp.append(nbVideo)
                 #print("add video")
             else:
-                print(tmp)
+                #print(tmp)
                 tmp = []
                 currentCacheSize = 0
                 matrix.append(tmp)
@@ -132,11 +134,12 @@ def algo():
                 cachenb += 1
                 if (cachenb >= int(nbCaches)):
                     return matrix
-        print(matrix)
+        #print(matrix)
         return matrix
 
 
 
 var = algo()
-print(var)
-WriteToFile(nbCaches, algo())
+print(cachenb)
+#print(var)
+WriteToFile(cachenb, var)
