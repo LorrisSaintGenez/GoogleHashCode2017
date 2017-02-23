@@ -94,12 +94,11 @@ f.close()'''
 #==============================================================================#
 
 videos = parseFile('me_at_the_zoo.in')
-videos[len(videos) - 1] = str(329)
+videos[len(videos) - 1] = videos[len(videos) - 1][:-1]
 #print("====" + videos[len(videos) - 1] + "====")
 
 def algo():
     tabLength = len(videos)
-    print(nbCaches)
     matrix = []
     if (nbCaches != 0):
         split = tabLength // int(nbCaches)
