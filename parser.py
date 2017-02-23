@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 
 nbVideos = 0
@@ -81,3 +83,18 @@ def WriteToFile(val):
     f.close()
 
 #==============================================================================#
+
+nbCaches = 3
+videos = [5, 2, 9, 7, 6, 5]
+
+def algo():
+    tabLength = len(videos)
+    split = tabLength // nbCaches
+    matrix = [[0 for x in range(split)] for y in range(nbCaches)]
+    for i in range(nbCaches):
+        for j in range(split):
+            matrix[i][j] = videos[i * split + j]
+    return matrix
+
+print()
+print(algo())
