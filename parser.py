@@ -11,6 +11,7 @@ sizeEachCache = 0
 
 
 def parseFile(file):
+    global nbCaches
     matrix = []
     process = 0
     val_parse = 0
@@ -72,34 +73,38 @@ def FromContainerToString(val):
     return tmp
 
 def WriteToFile(header, val):
-    f = open('test.txt', 'a+')
+    f = open('test.txt', 'w+')
+    i = 0
     f.write(str(header) + '\n')
     for x in val:
+        f.write(str(i) + " ")
+        i += 1
         for y in x:
-            f.write(y + '\n')
+            f.write(str(y) + ' ')
         f.write('\n')
     f.close()
 
-a = "500" + '\n'
+'''a = "500" + '\n'
 for i in range(0, 500):
     a += str(i) +' '+ str(random.randint(0,500)) + '\n'
 f = open('test.txt', 'w')
 f.write(a)
-f.close()
+f.close()'''
 
 #==============================================================================#
 
-videos = parseFile('trending_today.in')
+videos = parseFile('me_at_the_zoo.in')
 videos[len(videos) - 1] = str(329)
 #print("====" + videos[len(videos) - 1] + "====")
 
 def algo():
     tabLength = len(videos)
+    print(nbCaches)
     matrix = []
     if (nbCaches != 0):
-        split = tabLength // nbCaches
-        matrix = [[0 for x in range(split)] for y in range(nbCaches)]
-        for i in range(nbCaches):
+        split = tabLength // int(nbCaches)
+        matrix = [[0 for x in range(split)] for y in range(int(nbCaches))]
+        for i in range(int(nbCaches)):
             for j in range(split):
                 matrix[i][j] = videos[i * split + j]
     return matrix
