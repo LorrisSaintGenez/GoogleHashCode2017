@@ -18,7 +18,7 @@ def parseFile(file):
 
 def Desepoire():
     print('trop vieux pour cette merde !')
-    
+
 def FromContainerToString(val):
     tmp = ""
     for x in val:
@@ -29,3 +29,5 @@ def WriteToFile(val):
     f = open('test.txt', 'a+')
     f.write(val)
     f.close()
+
+#==============================================================================#
