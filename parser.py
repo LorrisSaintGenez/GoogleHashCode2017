@@ -58,7 +58,7 @@ def parseFile(file):
 					detail = []
 	return video_list_sizes
 
-print(parseFile('trending_today.in'))
+#print(parseFile('trending_today.in'))
 
 
 
@@ -73,7 +73,7 @@ def FromContainerToString(val):
 
 def WriteToFile(header, val):
     f = open('test.txt', 'a+')
-    f.write(header + '\n')
+    f.write(str(header) + '\n')
     for x in val:
         for y in x:
             f.write(y + '\n')
@@ -89,17 +89,20 @@ f.close()
 
 #==============================================================================#
 
-nbCaches = 3
-videos = [5, 2, 9, 7, 6, 5]
+videos = parseFile('trending_today.in')
+videos[len(videos) - 1] = str(329)
+#print("====" + videos[len(videos) - 1] + "====")
 
 def algo():
     tabLength = len(videos)
-    split = tabLength // nbCaches
-    matrix = [[0 for x in range(split)] for y in range(nbCaches)]
-    for i in range(nbCaches):
-        for j in range(split):
-            matrix[i][j] = videos[i * split + j]
+    matrix = []
+    if (nbCaches != 0):
+        split = tabLength // nbCaches
+        matrix = [[0 for x in range(split)] for y in range(nbCaches)]
+        for i in range(nbCaches):
+            for j in range(split):
+                matrix[i][j] = videos[i * split + j]
     return matrix
 
-print()
-print(algo())
+#print(algo())
+WriteToFile(nbCaches, algo())
