@@ -97,7 +97,7 @@ def WriteToFile(header, val):
 
 # ==============================================================================#
 
-videos, plop = parseFile('kittens.in')
+videos, plop = parseFile('me_at_the_zoo.in')
 videos[len(videos) - 1] = (videos[len(videos) - 1])[:-1]
 '''
 bigMatrix = [] #requete video, endpoint, nbrequete
@@ -106,6 +106,14 @@ video_list_sizes = [] #taille des video
 master = [] #cache / latence
 '''
 
+print(bigMatrix)
+bigMatrix.sort(key=lambda x : x[2])
+bigMatrix = reversed(bigMatrix)
+print(bigMatrix)   
+rest = []
+for x in bigMatrix:
+    rest.append(int(x[1]))
+print(rest)
 
 cachenb = 0
 def algo():
@@ -118,12 +126,13 @@ def algo():
     if nbCaches != 0:
         #print(int(nbVideos))
         tmp = []
-        for nbVideo in range(int(nbVideos)):
+        for nbVideo in rest:
             #print(nbVideo)
             if (currentCacheSize + int(video_list_sizes[nbVideo]) < int(sizeEachCache)):
                 #print(str(currentCacheSize + int(video_list_sizes[nbVideo])) + "!////!" + str(int(sizeEachCache)))
                 currentCacheSize += int(video_list_sizes[nbVideo])
-                tmp.append(nbVideo)
+                if (nbVideo not in tmp):
+                    tmp.append(nbVideo)
                 #print("add video")
             else:
                 #print(tmp)
