@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+import random
 
 nbVideos = 0
 nbEndPoints = 0
@@ -70,10 +71,21 @@ def FromContainerToString(val):
         val += x + ""
     return tmp
 
-def WriteToFile(val):
+def WriteToFile(header, val):
     f = open('test.txt', 'a+')
-    f.write(val)
+    f.write(header + '\n')
+    for x in val:
+        for y in x:
+            f.write(y + '\n')
+        f.write('\n')
     f.close()
+
+a = "500" + '\n'
+for i in range(0, 500):
+    a += str(i) +' '+ str(random.randint(0,500)) + '\n'
+f = open('test.txt', 'w')
+f.write(a)
+f.close()
 
 #==============================================================================#
 
